@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,31 +21,32 @@ public class Car {
   @Column(name = "car_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   // @JsonIgnore
-  public Long id;
+  private Long id;
 
   @Column(name = "carplate_number")
-  public String carplate;
+  private String carplate;
 
   @Column(name = "location")
-  public Integer location;
+  private Integer location;
 
-  @Column(name = "rider")
-  public String rider;
+  @JsonIgnore
+  @OneToOne
+  @JoinColumn(name = "car_id")
+  private User user;
 
   @Column(name = "start_time")
-  public Time startTime;
+  private Time startTime;
 
   @Column(name = "end_time")
-  public Time endTime;
+  private Time endTime;
 
   public Car() {
   }
 
-  public Car(String carplate, Integer location, String rider, Time startTime,
-      Time endTime) {
+  public Car(String carplate, Integer location, User user, Time startTime, Time endTime) {
     this.carplate = carplate;
     this.location = location;
-    this.rider = rider;
+    this.user = user;
     this.startTime = startTime;
     this.endTime = endTime;
   }
@@ -64,13 +67,6 @@ public class Car {
     this.carplate = carplate;
   }
 
-  @Override
-  public String toString() {
-    return "Car [carplate=" + carplate + ", endTime=" + endTime + ", id=" + id +
-        ", location=" + location + ", rider="
-        + rider + ", startTime=" + startTime + "]";
-  }
-
   public Integer getLocation() {
     return location;
   }
@@ -79,12 +75,12 @@ public class Car {
     this.location = location;
   }
 
-  public String getRider() {
-    return rider;
+  public User getUser() {
+    return user;
   }
 
-  public void setRider(String rider) {
-    this.rider = rider;
+  public void setUser(User user) {
+    this.user = user;
   }
 
   public Time getStartTime() {
@@ -101,6 +97,12 @@ public class Car {
 
   public void setEndTime(Time endTime) {
     this.endTime = endTime;
+  }
+
+  @Override
+  public String toString() {
+    return "Car [carplate=" + carplate + ", endTime=" + endTime + ", id=" + id + ", location=" + location
+        + ", startTime=" + startTime + ", user=" + user + "]";
   }
 
 }

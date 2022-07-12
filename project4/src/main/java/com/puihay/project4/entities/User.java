@@ -38,7 +38,6 @@ public class User {
 
   @OneToOne
   @JoinColumn(name = "car_id")
-  @Column(name = "car")
   private Car car;
 
   public User() {
