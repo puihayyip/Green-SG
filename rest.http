@@ -1,0 +1,18 @@
+@baseUrl = http://localhost:8080/api
+
+//Get all users
+GET {{baseUrl}}/getusers
+
+###
+//Post new user
+POST {{baseUrl}}/postuser
+Content-Type: application/json
+
+{
+  "username": "helloYahoo",
+  "firstName": "Hello",
+  "lastName": "Spring",
+  "email": "hello@yahoo.com",
+  "password": "hello"
+}
+
