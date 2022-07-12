@@ -1,26 +1,22 @@
 package com.puihay.project4.entities;
 
-import java.sql.Time;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.lang.NonNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "car")
 public class Car {
 
   @Id
-  @Column(name = "car_id")
+  @Column(name = "id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   // @JsonIgnore
   private Long id;
@@ -33,24 +29,18 @@ public class Car {
   @Column(name = "location")
   private Integer location;
 
-  @JsonIgnore
-  @OneToOne
-  @JoinColumn(name = "car_id")
-  private User user;
-
   @Column(name = "start_time")
-  private Time startTime;
+  private LocalTime startTime;
 
   @Column(name = "end_time")
-  private Time endTime;
+  private LocalTime endTime;
 
   public Car() {
   }
 
-  public Car(String carplate, Integer location, User user, Time startTime, Time endTime) {
+  public Car(String carplate, Integer location, LocalTime startTime, LocalTime endTime) {
     this.carplate = carplate;
     this.location = location;
-    this.user = user;
     this.startTime = startTime;
     this.endTime = endTime;
   }
@@ -79,34 +69,26 @@ public class Car {
     this.location = location;
   }
 
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
-  }
-
-  public Time getStartTime() {
+  public LocalTime getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(Time startTime) {
+  public void setStartTime(LocalTime startTime) {
     this.startTime = startTime;
   }
 
-  public Time getEndTime() {
+  public LocalTime getEndTime() {
     return endTime;
   }
 
-  public void setEndTime(Time endTime) {
+  public void setEndTime(LocalTime endTime) {
     this.endTime = endTime;
   }
 
   @Override
   public String toString() {
     return "Car [carplate=" + carplate + ", endTime=" + endTime + ", id=" + id + ", location=" + location
-        + ", startTime=" + startTime + ", user=" + user + "]";
+        + ", startTime=" + startTime + "]";
   }
 
 }

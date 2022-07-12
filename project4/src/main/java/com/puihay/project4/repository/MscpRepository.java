@@ -7,5 +7,14 @@ import com.puihay.project4.entities.Mscp;
 
 @Repository
 public interface MscpRepository extends JpaRepository<Mscp, Long> {
+  Mscp findByPostal(Integer postal);
+
+  Mscp findBySpot1(String carplate);
+
+  Mscp findBySpot2(String carplate);
+
+  Mscp findBySpot3(String carplate);
+
+  Mscp findBySpot4(String carplate);
 
 }

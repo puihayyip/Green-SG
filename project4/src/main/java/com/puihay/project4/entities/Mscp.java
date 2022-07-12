@@ -14,7 +14,7 @@ import org.springframework.lang.NonNull;
 public class Mscp {
 
   @Id
-  @Column(name = "mscp_id")
+  @Column(name = "id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   // @JsonIgnore
   public Long id;

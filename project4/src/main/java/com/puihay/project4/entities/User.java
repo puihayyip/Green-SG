@@ -1,5 +1,6 @@
 package com.puihay.project4.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ import org.springframework.lang.NonNull;
 public class User {
 
   @Id
-  @Column(name = "user_id")
+  @Column(name = "id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   // @JsonIgnore
   private Long id;
@@ -41,7 +42,7 @@ public class User {
   @Column(name = "password")
   private String password;
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "car_id")
   private Car car;
 
