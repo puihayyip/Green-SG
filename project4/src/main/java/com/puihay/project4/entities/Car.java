@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.lang.NonNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -23,9 +25,11 @@ public class Car {
   // @JsonIgnore
   private Long id;
 
+  @NonNull
   @Column(name = "carplate_number")
   private String carplate;
 
+  @NonNull
   @Column(name = "location")
   private Integer location;
 

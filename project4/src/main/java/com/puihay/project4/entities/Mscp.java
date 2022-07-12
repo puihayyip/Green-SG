@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.lang.NonNull;
+
 @Entity
 @Table(name = "mscp")
 public class Mscp {
@@ -17,12 +19,15 @@ public class Mscp {
   // @JsonIgnore
   public Long id;
 
+  @NonNull
   @Column(name = "block")
   public String block;
 
+  @NonNull
   @Column(name = "street")
   public String street;
 
+  @NonNull
   @Column(name = "postal")
   public Integer postal;
 

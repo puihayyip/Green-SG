@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.lang.NonNull;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -20,17 +22,22 @@ public class User {
   private Long id;
 
   @Column(name = "username")
+  @NonNull
   private String username;
 
+  @NonNull
   @Column(name = "first_name")
   private String firstName;
 
+  @NonNull
   @Column(name = "last_name")
   private String lastName;
 
+  @NonNull
   @Column(name = "email")
   private String email;
 
+  @NonNull
   @Column(name = "password")
   private String password;
 
@@ -39,6 +46,14 @@ public class User {
   private Car car;
 
   public User() {
+  }
+
+  public User(String username, String firstName, String lastName, String email, String password) {
+    this.username = username;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.password = password;
   }
 
   public User(String username, String firstName, String lastName, String email, String password, Car car) {
