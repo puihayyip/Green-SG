@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 // import axios from "axios";
-import Home from "./pages/HomePage/Home";
+import Home from "./pages/Home";
 
 function App() {
   // axios

@@ -6,8 +6,8 @@ import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
-import { useState } from "react";
-import { IMscp } from "../../interfaces";
+import { useEffect, useState } from "react";
+import { IMscp } from "../interfaces";
 
 const theme = createTheme({
   palette: {
@@ -22,14 +22,22 @@ const theme = createTheme({
 
 export default function Head() {
   const [field, setField] = useState("");
+  const [data, setData] = useState<IMscp[]>([]);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    setField("");
     axios
-      .get<Array<IMscp>>("http://localhost:8080/api/mscps")
+      .get<Array<IMscp>>(`http://localhost:8080/api/mscp/search?field=${field}`)
       .then((res: any) => console.log(res.data));
+    setField("");
   };
+
+  useEffect(() => {
+    axios
+      .get<Array<IMscp>>(`http://localhost:8080/api/mscp/search?field=${field}`)
+      .then((res: any) => setData(res.data));
+    console.log(data);
+  }, [field]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -71,6 +79,7 @@ export default function Head() {
                     setField(event.target.value);
                   }}
                 />
+
                 <button
                   type="submit"
                   style={{ background: "none", padding: "0px", border: "none" }}
