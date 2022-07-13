@@ -4,9 +4,6 @@ import "./App.css";
 import Home from "./pages/Home";
 
 function App() {
-  // axios
-  //   .get<Array<IUser>>("http://localhost:8080/api/getusers")
-  //   .then((res: any) => console.log(res.data));
 
   return (
     <div className="App">

@@ -7,6 +7,8 @@ export interface IMscp {
   spot2: string;
   spot3: string;
   spot4: string;
+  carsAvail?: number;
+  parkingAvail?: number;
 }
 
 export interface ICar {

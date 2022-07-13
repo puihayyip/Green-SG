@@ -1,23 +1,34 @@
+import { useState } from "react";
+import { IMscp } from "../interfaces";
 import MainHeader from "./MainHeader";
 import Sidebar from "./Sidebar";
 
 function Main() {
+  const [data, setData] = useState<IMscp[]>([]);
+
   return (
     <>
       <header>
-        <MainHeader />
+        <MainHeader data={data} setData={setData} />
       </header>
       <div
         style={{
           display: "grid",
-          minHeight: "calc(100vh - 100px)",
+          height: "calc(100vh - 100px)",
           gridTemplateColumns: "1fr 4fr",
           gridTemplateRows: "5fr 1fr",
         }}
       >
-        <div style={{ border: "1px solid red", gridColumn: "1" }}>
+        <div
+          style={{
+            border: "1px solid red",
+            gridColumn: "1",
+            overflow: "hidden",
+            overflowY: "auto",
+          }}
+        >
           {/* <h1>Sidebar</h1> */}
-          <Sidebar />
+          <Sidebar data={data} setData={setData} />
         </div>
         <div
           style={{

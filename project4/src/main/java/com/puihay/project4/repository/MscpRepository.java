@@ -11,9 +11,7 @@ import com.puihay.project4.entities.Mscp;
 public interface MscpRepository extends JpaRepository<Mscp, Long> {
   Mscp findByPostal(Integer postal);
 
-  // List<Mscp> findByPostalStartsWith(String postal);
-  List<Mscp> findByStreetContainingIgnoreCaseOrBlockContainingIgnoreCaseOrPostalStartsWith(String street, String block,
-      String postal);
+  List<Mscp> findByStreetContainingIgnoreCaseOrBlockContainingIgnoreCaseOrPostalStartsWith(String street, String block, String postal);
 
   Mscp findBySpot1(String carplate);
 

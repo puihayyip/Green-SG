@@ -9,7 +9,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { IMscp } from "../interfaces";
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     primary: {
       main: colors.green[500],
@@ -20,15 +20,16 @@ const theme = createTheme({
   },
 });
 
-export default function Head() {
+export default function Head(props: any) {
+  const data = props.data;
+  const setData = props.setData;
   const [field, setField] = useState("");
-  const [data, setData] = useState<IMscp[]>([]);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    axios
-      .get<Array<IMscp>>(`http://localhost:8080/api/mscp/search?field=${field}`)
-      .then((res: any) => console.log(res.data));
+
+    // function to automatically zone into selected station if only 1 is result remains
+
     setField("");
   };
 
