@@ -14,3 +14,7 @@ p {
   font-size: 1.1rem;
   font-weight: bolder;
 }
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}

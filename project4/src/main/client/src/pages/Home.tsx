@@ -3,6 +3,7 @@ import { useState } from "react";
 import { IMscp } from "../interfaces";
 import MainHeader from "./MainHeader";
 import Sidebar from "./Sidebar";
+import Map from "./Map";
 
 export const theme = createTheme({
   palette: {
@@ -34,7 +35,6 @@ function Main() {
       >
         <div
           style={{
-            border: "1px solid red",
             gridColumn: "1",
             overflow: "hidden",
             overflowY: "auto",
@@ -44,11 +44,10 @@ function Main() {
         </div>
         <div
           style={{
-            border: "1px solid blue",
             gridColumn: "2",
           }}
         >
-          <h1>Main</h1>
+          <Map />
         </div>
         <div
           style={{

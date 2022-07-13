@@ -4,7 +4,6 @@ import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import "../App.css";
 import { theme } from "./Home";
 import { ThemeProvider } from "@emotion/react";
-import { parse } from "path";
 
 function Sidebar(props: any) {
   const data = props.data;

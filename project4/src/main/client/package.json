@@ -12,8 +12,10 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "axios": "^0.27.2",
+    "leaflet": "^1.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-leaflet": "^4.0.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "styled": "^1.0.0",
@@ -46,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@types/leaflet": "^1.7.11",
     "@types/node": "^18.0.3",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6"
