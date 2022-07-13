@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.puihay.project4.entities.Mscp;
@@ -28,4 +29,10 @@ public class MscpController {
   public Mscp postMscp(@RequestBody Mscp mscp) {
     return mscpService.postMscp(mscp);
   }
+
+  @GetMapping("/mscp/search")
+  public List<Mscp> search(@RequestParam String field) {
+    return mscpService.search(field);
+  }
+
 }

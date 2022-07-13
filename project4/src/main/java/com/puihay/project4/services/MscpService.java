@@ -24,4 +24,10 @@ public class MscpService {
   public Mscp postMscp(Mscp mscp) {
     return mscpRepository.save(mscp);
   }
+
+  public List<Mscp> search(String field) {
+    return mscpRepository.findByStreetContainingIgnoreCaseOrBlockContainingIgnoreCaseOrPostalStartsWith(field,
+        field, field);
+
+  }
 }

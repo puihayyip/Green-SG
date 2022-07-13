@@ -29,7 +29,7 @@ public class Mscp {
 
   @NonNull
   @Column(name = "postal")
-  public Integer postal;
+  public String postal;
 
   @Column(name = "spot1")
   public String spot1;
@@ -46,7 +46,7 @@ public class Mscp {
   public Mscp() {
   }
 
-  public Mscp(String block, String street, Integer postal, String spot1, String spot2, String spot3, String spot4) {
+  public Mscp(String block, String street, String postal, String spot1, String spot2, String spot3, String spot4) {
     this.block = block;
     this.street = street;
     this.postal = postal;
@@ -80,11 +80,11 @@ public class Mscp {
     this.street = street;
   }
 
-  public Integer getPostal() {
+  public String getPostal() {
     return postal;
   }
 
-  public void setPostal(Integer postal) {
+  public void setPostal(String postal) {
     this.postal = postal;
   }
 

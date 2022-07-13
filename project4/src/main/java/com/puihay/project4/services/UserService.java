@@ -43,8 +43,6 @@ public class UserService {
     User theUser = userRepository.findById(userId).get();
     Car theCar = carRepository.findById(carId).get();
     LocalTime localTime = LocalTime.now();
-    // Integer thePostal = theCar.getLocation();
-    // Mscp theMscp = mscpRepository.findByPostal(thePostal);
     String theCarplate = theCar.getCarplate();
 
     Mscp theMscp;

@@ -5,7 +5,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
 import { useState } from "react";
+import { IMscp } from "../../interfaces";
 
 const theme = createTheme({
   palette: {
@@ -20,6 +22,14 @@ const theme = createTheme({
 
 export default function Head() {
   const [field, setField] = useState("");
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    setField("");
+    axios
+      .get<Array<IMscp>>("http://localhost:8080/api/mscps")
+      .then((res: any) => console.log(res.data));
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -43,13 +53,7 @@ export default function Head() {
             >
               GreenSG
             </Typography>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setField("");
-                console.log(field);
-              }}
-            >
+            <form onSubmit={(e) => handleSubmit(e)}>
               <div style={{ display: "flex", gap: "10px" }}>
                 <TextField
                   id="outlined-basic"
