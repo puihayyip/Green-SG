@@ -76,4 +76,47 @@ public class UserService {
     mscpRepository.save(theMscp);
     return theUser;
   }
+
+  public User end(Long userId, int mscpPostal) {
+    User theUser = userRepository.findById(userId).get();
+    Mscp theMscp = mscpRepository.findByPostal(mscpPostal);
+    Car theCar = theUser.getCar();
+    String theCarPlate = theCar.getCarplate();
+    LocalTime localTime = LocalTime.now();
+
+    if (theMscp.getSpot1() == null) {
+      theMscp.setSpot1(theCarPlate);
+    } else {
+      if (theMscp.getSpot2() == null) {
+        theMscp.setSpot2(theCarPlate);
+      } else {
+        if (theMscp.getSpot3() == null) {
+          theMscp.setSpot3(theCarPlate);
+        } else {
+          if (theMscp.getSpot4() == null) {
+            theMscp.setSpot4(theCarPlate);
+          }
+        }
+      }
+    }
+
+    theCar.setEndTime(localTime);
+    theCar.setLocation(mscpPostal);
+    theUser.setCar(null);
+
+    int timeDiff = difference(theCar.getStartTime(), theCar.getEndTime());
+    double rentalFee = 0.42;
+    System.out.println(timeDiff * rentalFee);
+    userRepository.save(theUser);
+    mscpRepository.save(theMscp);
+    carRepository.save(theCar);
+    return theUser;
+  }
+
+  public static int difference(LocalTime start, LocalTime stop) {
+    int diffMinutes = (start.getMinute() - stop.getMinute());
+    int diffHours = (start.getHour() - stop.getHour()) * 60;
+    int diff = diffHours + diffMinutes;
+    return -diff;
+  }
 }

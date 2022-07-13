@@ -38,6 +38,11 @@ public class UserController {
     return userService.book(userId, carId);
   }
 
+  @PutMapping("/users/end")
+  public User end(@RequestParam Long userId, @RequestParam int mscp) {
+    return userService.end(userId, mscp);
+  }
+
   @PostMapping("/users")
   public User postUser(@RequestBody User user) {
     return userService.postUser(user);
