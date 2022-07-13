@@ -1,21 +1,34 @@
+import { colors, createTheme } from "@mui/material";
 import { useState } from "react";
 import { IMscp } from "../interfaces";
 import MainHeader from "./MainHeader";
 import Sidebar from "./Sidebar";
 
+export const theme = createTheme({
+  palette: {
+    primary: {
+      main: colors.green[500],
+    },
+    secondary: {
+      main: colors.grey[50],
+    },
+  },
+});
+
 function Main() {
-  const [data, setData] = useState<IMscp[]>([]);
+  const [data, setData] = useState<IMscp[]>([]); //selected MSCP
+  const [selection, setSelection] = useState<number>(0); //selected MSCP
 
   return (
     <>
       <header>
-        <MainHeader data={data} setData={setData} />
+        <MainHeader data={data} setData={setData} setSelection={setSelection} />
       </header>
       <div
         style={{
           display: "grid",
           height: "calc(100vh - 100px)",
-          gridTemplateColumns: "1fr 4fr",
+          gridTemplateColumns: "1fr 3fr",
           gridTemplateRows: "5fr 1fr",
         }}
       >
@@ -27,8 +40,7 @@ function Main() {
             overflowY: "auto",
           }}
         >
-          {/* <h1>Sidebar</h1> */}
-          <Sidebar data={data} setData={setData} />
+          <Sidebar data={data} setData={setData} setSelection={setSelection} />
         </div>
         <div
           style={{

@@ -1,38 +1,67 @@
 import { IMscp } from "../interfaces";
 import DriveEtaIcon from "@mui/icons-material/DriveEta";
+import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import "../App.css";
+import { theme } from "./Home";
+import { ThemeProvider } from "@emotion/react";
+import { parse } from "path";
 
 function Sidebar(props: any) {
   const data = props.data;
   const setData = props.setData;
+  const setSelection = props.setSelection;
+
   const newData = findDetails(data);
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      {data.map((location: IMscp, index: number) => {
-        return (
-          <div
-            style={{
-              borderBottom: "1px black solid",
-              paddingBottom: "10px",
-              paddingTop: "10px",
-            }}
-          >
-            <p key={index}>
-              {location.block} {location.street}, {location.postal}
-            </p>
-            <p>
-              <DriveEtaIcon color="primary" /> {location.carsAvail}, Parking
-              spots: {location.parkingAvail}
-            </p>
-          </div>
-        );
-      })}
-    </div>
+    <ThemeProvider theme={theme}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {data.map((location: IMscp, index: number) => {
+          return (
+            <div
+              style={{
+                borderBottom: "1px grey solid",
+                paddingBottom: "10px",
+                paddingTop: "10px",
+                cursor: "pointer",
+              }}
+              onClick={() => setSelection(location.postal)}
+            >
+              <p
+                key={index}
+                style={{
+                  fontSize: "1.1rem",
+                  fontWeight: "bolder",
+                  marginBottom: "12px",
+                }}
+              >
+                {location.block} {location.street}, S{location.postal}
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  alignContent: "baseline",
+                  justifyContent: "center",
+                  gap: "20px",
+                }}
+              >
+                <div className="sidebar-stats">
+                  <DriveEtaIcon color="primary" /> {location.carsAvail}
+                </div>
+                <div className="sidebar-stats">
+                  <LocalParkingIcon color="primary" />
+                  {location.parkingAvail}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </ThemeProvider>
   );
 }
 

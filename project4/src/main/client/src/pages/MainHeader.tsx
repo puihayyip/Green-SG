@@ -1,5 +1,5 @@
 import SearchIcon from "@mui/icons-material/Search";
-import { colors, createTheme, TextField, ThemeProvider } from "@mui/material";
+import { TextField, ThemeProvider } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -8,36 +8,29 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IMscp } from "../interfaces";
-
-export const theme = createTheme({
-  palette: {
-    primary: {
-      main: colors.green[500],
-    },
-    secondary: {
-      main: colors.grey[50],
-    },
-  },
-});
+import { theme } from "./Home";
 
 export default function Head(props: any) {
   const data = props.data;
   const setData = props.setData;
+  const setSelection = props.setSelection;
+  const selection = props.selection;
   const [field, setField] = useState("");
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
     // function to automatically zone into selected station if only 1 is result remains
-
-    setField("");
+    if (data.length === 1) {
+      setSelection(data[0].postal);
+      setField("");
+    }
   };
 
   useEffect(() => {
     axios
       .get<Array<IMscp>>(`http://localhost:8080/api/mscp/search?field=${field}`)
       .then((res: any) => setData(res.data));
-    console.log(data);
   }, [field]);
 
   return (

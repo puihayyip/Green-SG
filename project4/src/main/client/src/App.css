@@ -6,3 +6,11 @@ p {
   margin-top: 8px;
   margin-bottom: 8px;
 }
+
+.sidebar-stats {
+  display: flex;
+  align-content: baseline;
+  gap: 5px;
+  font-size: 1.1rem;
+  font-weight: bolder;
+}
