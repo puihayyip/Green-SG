@@ -1,10 +1,11 @@
-import React from "react";
+import MainHeader from "../Components/MainHeader";
 
 function Main() {
   return (
-    <div>
+    <>
+      <MainHeader />
       <h1>hello world</h1>
-    </div>
+    </>
   );
 }
 
