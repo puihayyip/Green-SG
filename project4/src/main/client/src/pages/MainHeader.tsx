@@ -11,13 +11,30 @@ import { useNavigate } from "react-router-dom";
 import { IMscp } from "../interfaces";
 import { theme } from "./Home";
 import LoginForm from "./LoginForm";
+import PersonIcon from "@mui/icons-material/Person";
 
-export default function Head(props: any) {
-  const data = props.data;
-  const setData = props.setData;
-  const setSelection = props.setSelection;
+interface AppProps {
+  setUser: React.Dispatch<React.SetStateAction<string>>;
+  user: string;
+  data: IMscp[];
+  setData: React.Dispatch<React.SetStateAction<IMscp[]>>;
+  setSelection: React.Dispatch<
+    React.SetStateAction<{
+      lat: number;
+      lng: number;
+    }>
+  >;
+}
+
+export default function Head({
+  data,
+  setData,
+  setSelection,
+  setUser,
+  user,
+}: AppProps) {
   const [open, setOpen] = useState<boolean>(false);
-  const [field, setField] = useState("");
+  const [field, setField] = useState<string>("");
   const navigate = useNavigate();
 
   const handleSubmit = (e: any) => {
@@ -81,6 +98,7 @@ export default function Head(props: any) {
                   style={{ background: "none", padding: "0px", border: "none" }}
                 >
                   <SearchIcon
+                    fontSize="large"
                     sx={{
                       alignSelf: "center",
                       color: "white",
@@ -92,33 +110,47 @@ export default function Head(props: any) {
                 </button>
               </div>
             </form>
-            <div style={{ marginLeft: "41px" }}>
-              <Button
-                sx={{
-                  fontWeight: "bold",
-                  color: "white",
-                  border: "1px white solid",
-                }}
-                onClick={() => setOpen(true)}
-              >
-                Login
-              </Button>
-              <Button
-                sx={{
-                  fontWeight: "bold",
-                  color: "white",
-                  border: "1px white solid",
-                  marginLeft: "10px",
-                }}
-                onClick={() => navigate("/register")}
-              >
-                Register{" "}
-              </Button>
-            </div>
+            {user ? (
+              <div style={{ marginLeft: "41px" }}>
+                <Button
+                  sx={{
+                    fontWeight: "bold",
+                    color: "white",
+                    border: "1px white solid",
+                  }}
+                  onClick={() => setOpen(true)}
+                >
+                  Login
+                </Button>
+                <Button
+                  sx={{
+                    fontWeight: "bold",
+                    color: "white",
+                    border: "1px white solid",
+                    marginLeft: "10px",
+                  }}
+                  onClick={() => navigate("/register")}
+                >
+                  Register
+                </Button>
+              </div>
+            ) : (
+              <div style={{ display: "flex", gap: "10px" }}>
+                <PersonIcon
+                  fontSize="large"
+                  sx={{
+                    border: "2px solid white",
+                    borderRadius: "50%",
+                    color: "white",
+                    cursor: "pointer",
+                  }}
+                />
+              </div>
+            )}
           </Toolbar>
         </AppBar>
       </ThemeProvider>
-      <LoginForm open={open} setOpen={setOpen} />
+      <LoginForm open={open} setOpen={setOpen} setUser={setUser} />
     </Box>
   );
 }

@@ -10,9 +10,13 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function LoginForm(props: any) {
-  const open: boolean = props.open;
-  const setOpen = props.setOpen;
+interface AppProps {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setUser: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function LoginForm({ open, setOpen, setUser }: AppProps) {
   const [alert, setAlert] = useState<boolean>();
   const [visible, setVisible] = useState<boolean>(false);
 
@@ -38,7 +42,10 @@ export default function LoginForm(props: any) {
         username: e.target[0].value,
         email: e.target[0].value,
       })
-      .then((data) => console.log(data))
+      .then((data) => {
+        setUser(data.data.username);
+        setOpen(false);
+      })
       .catch(function (error) {
         setAlert(true);
       });

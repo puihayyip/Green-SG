@@ -16,7 +16,12 @@ export const theme = createTheme({
   },
 });
 
-function Main() {
+interface AppProps {
+  setUser: React.Dispatch<React.SetStateAction<string>>;
+  user: string;
+}
+
+function Main({ setUser, user }: AppProps) {
   const [data, setData] = useState<IMscp[]>([]); //selected MSCP
   const [selection, setSelection] = useState<{ lat: number; lng: number }>({
     lat: 0,
@@ -26,7 +31,13 @@ function Main() {
   return (
     <>
       <header>
-        <MainHeader data={data} setData={setData} setSelection={setSelection} />
+        <MainHeader
+          data={data}
+          setData={setData}
+          setSelection={setSelection}
+          setUser={setUser}
+          user={user}
+        />
       </header>
       <div
         style={{

@@ -33,7 +33,11 @@ const validate = Yup.object().shape({
     .required("Confirm password is required"),
 });
 
-const RegisterForm: React.FC<{}> = () => {
+interface AppProps {
+  setUser: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const RegisterForm = ({ setUser }: AppProps) => {
   const initialValues: MyFormValues = {
     firstName: "",
     lastName: "",
@@ -68,7 +72,8 @@ const RegisterForm: React.FC<{}> = () => {
             setAlert(false);
           }}
         >
-          Duplicated email/username. Please choose another email address/username.
+          Duplicated email/username. Please choose another email
+          address/username.
         </Alert>
       ) : (
         <></>
@@ -90,7 +95,10 @@ const RegisterForm: React.FC<{}> = () => {
               password: values.confirmPassword,
               username: values.username,
             })
-            .then(() => navigate("/"))
+            .then(() => {
+              setUser(values.username);
+              navigate("/");
+            })
             .catch(function (error) {
               setAlert(true);
             });
