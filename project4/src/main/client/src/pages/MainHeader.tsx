@@ -133,7 +133,7 @@ export default function Head({
                 </Button>
               </div>
             ) : (
-              <DropdownList user={user} />
+              <DropdownList user={user} setUser={setUser} />
             )}
           </Toolbar>
         </AppBar>
