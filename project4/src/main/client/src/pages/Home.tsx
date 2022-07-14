@@ -19,10 +19,11 @@ export const theme = createTheme({
 
 interface AppProps {
   setUser: React.Dispatch<React.SetStateAction<IUser | AxiosResponse>>;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
   user: IUser | AxiosResponse;
 }
 
-function Main({ setUser, user }: AppProps) {
+function Main({ setUser, user, setReload }: AppProps) {
   const [data, setData] = useState<IMscp[]>([]); //selected MSCP
   const [selection, setSelection] = useState<{ lat: number; lng: number }>({
     lat: 0,
@@ -38,6 +39,7 @@ function Main({ setUser, user }: AppProps) {
           setSelection={setSelection}
           setUser={setUser}
           user={user}
+          setReload={setReload}
         />
       </header>
       <div
@@ -62,7 +64,7 @@ function Main({ setUser, user }: AppProps) {
             gridColumn: "2",
           }}
         >
-          <Map selection={selection} />
+          <Map selection={selection} setReload={setReload} />
         </div>
         <div
           style={{

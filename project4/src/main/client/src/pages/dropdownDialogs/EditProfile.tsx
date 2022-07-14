@@ -127,19 +127,23 @@ const EditProfile: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
                 <form
                   onSubmit={(e: any) => {
                     e.preventDefault();
-                    axios.put<any>(
-                      "http://localhost:8080/api/users/change/",
-                      {
-                        id: user.id,
-                        password: e.target[1].value,
-                      },
-                      {
-                        params: {
-                          field: "username",
-                          value: e.target[0].value,
+                    axios
+                      .put<any>(
+                        "http://localhost:8080/api/users/change/",
+                        {
+                          id: user.id,
+                          password: e.target[1].value,
                         },
-                      }
-                    );
+                        {
+                          params: {
+                            field: "username",
+                            value: e.target[0].value,
+                          },
+                        }
+                      )
+                      .then((data) =>
+                        localStorage.setItem("User", JSON.stringify(data.data))
+                      );
                   }}
                 >
                   <TextField
@@ -237,19 +241,23 @@ const EditProfile: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
                 <form
                   onSubmit={(e: any) => {
                     e.preventDefault();
-                    axios.put<any>(
-                      "http://localhost:8080/api/users/change-name/",
-                      {
-                        id: user.id,
-                        password: e.target[2].value,
-                      },
-                      {
-                        params: {
-                          first: e.target[0].value,
-                          last: e.target[1].value,
+                    axios
+                      .put<any>(
+                        "http://localhost:8080/api/users/change-name/",
+                        {
+                          id: user.id,
+                          password: e.target[2].value,
                         },
-                      }
-                    );
+                        {
+                          params: {
+                            first: e.target[0].value,
+                            last: e.target[1].value,
+                          },
+                        }
+                      )
+                      .then((data) =>
+                        localStorage.setItem("User", JSON.stringify(data.data))
+                      );
                   }}
                 >
                   <TextField
@@ -301,19 +309,23 @@ const EditProfile: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
                 <form
                   onSubmit={(e: any) => {
                     e.preventDefault();
-                    axios.put<any>(
-                      "http://localhost:8080/api/users/change/",
-                      {
-                        id: user.id,
-                        password: e.target[0].value,
-                      },
-                      {
-                        params: {
-                          field: "password",
-                          value: e.target[2].value,
+                    axios
+                      .put<any>(
+                        "http://localhost:8080/api/users/change/",
+                        {
+                          id: user.id,
+                          password: e.target[0].value,
                         },
-                      }
-                    );
+                        {
+                          params: {
+                            field: "password",
+                            value: e.target[2].value,
+                          },
+                        }
+                      )
+                      .then((data) =>
+                        localStorage.setItem("User", JSON.stringify(data.data))
+                      );
                   }}
                 >
                   <TextField

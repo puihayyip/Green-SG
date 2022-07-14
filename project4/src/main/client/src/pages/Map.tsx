@@ -10,8 +10,12 @@ import {
 import { IMscp } from "../interfaces";
 import MapPopup from "./MapPopup";
 
-function Map(props: any) {
-  const selection: { lat: number; lng: number } = props.selection;
+interface AppProps {
+  selection: { lat: number; lng: number };
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Map({ selection, setReload }: AppProps) {
   const [marker, setMarker] = useState<IMscp[]>([]);
 
   useEffect(() => {
@@ -39,13 +43,20 @@ function Map(props: any) {
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <HandleClickMap />
       {marker.map((eachPoint, index) => {
+        let num: number = 0;
+        if (eachPoint.spot1) num++;
+        if (eachPoint.spot2) num++;
+        if (eachPoint.spot3) num++;
+        if (eachPoint.spot4) num++;
+        eachPoint.carsAvail = num;
+        eachPoint.parkingAvail = 4 - num;
         return (
           <Marker
             position={[eachPoint.latitude, eachPoint.longtitude]}
             key={index}
           >
             <Popup position={[eachPoint.latitude, eachPoint.longtitude]}>
-              <MapPopup eachPoint={eachPoint} />
+              <MapPopup eachPoint={eachPoint} setReload={setReload} />
             </Popup>
           </Marker>
         );

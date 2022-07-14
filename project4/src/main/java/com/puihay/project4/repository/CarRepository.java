@@ -8,4 +8,6 @@ import com.puihay.project4.entities.Car;
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
 
+  Car findByCarplate(String carplate);
+
 }

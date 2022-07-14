@@ -15,6 +15,7 @@ import DropdownList from "./DropdownList";
 
 interface AppProps {
   setUser: React.Dispatch<React.SetStateAction<IUser | AxiosResponse>>;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
   user: IUser | AxiosResponse;
   data: IMscp[];
   setData: React.Dispatch<React.SetStateAction<IMscp[]>>;
@@ -32,6 +33,7 @@ export default function Head({
   setSelection,
   setUser,
   user,
+  setReload,
 }: AppProps) {
   const [open, setOpen] = useState<boolean>(false);
   const [field, setField] = useState<string>("");

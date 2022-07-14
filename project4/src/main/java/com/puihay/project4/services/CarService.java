@@ -24,4 +24,8 @@ public class CarService {
   public Car postCar(Car car) {
     return carRepository.save(car);
   }
+
+  public Car getCar(String carplate) {
+    return carRepository.findByCarplate(carplate);
+  }
 }

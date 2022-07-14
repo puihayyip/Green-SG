@@ -153,6 +153,7 @@ function DropdownList({ user, setUser }: AppProps) {
               },
             });
             setAnchorEl(null);
+            localStorage.removeItem("User");
           }}
         >
           Logout

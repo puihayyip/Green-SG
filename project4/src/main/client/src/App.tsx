@@ -23,6 +23,8 @@ function App() {
     },
   });
 
+  const [reload, setReload] = useState<boolean>(false);
+
   useEffect(() => {
     localStorage.setItem("User", JSON.stringify(user));
   }, [user]);
@@ -31,7 +33,12 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home setUser={setUser} user={user} />} />
+          <Route
+            path="/"
+            element={
+              <Home setUser={setUser} user={user} setReload={setReload} />
+            }
+          />
           <Route
             path="/register"
             element={<RegisterForm setUser={setUser} />}
