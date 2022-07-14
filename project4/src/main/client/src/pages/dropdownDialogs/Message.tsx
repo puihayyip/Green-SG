@@ -5,6 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { Paper } from "@mui/material";
 
 interface IState {
   currentBooking: boolean;
@@ -42,32 +43,49 @@ const Message: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
   return (
     <div>
       <Dialog
+        maxWidth="md"
         open={openMenu.message}
         onClose={handleClose}
         scroll={scroll}
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="scroll-dialog-title">Messages</DialogTitle>
         <DialogContent dividers={scroll === "paper"}>
           <DialogContentText
             id="scroll-dialog-description"
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            {[...new Array(50)]
-              .map(
-                () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-              )
-              .join("\n")}
+            {[...new Array(10)].map(() => (
+              <Paper elevation={3} sx={{ marginBottom: "20px" }}>
+                <div style={{ margin: "10px" }}>
+                  <h2>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Error, sed!
+                  </h2>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Perferendis natus ratione ipsum unde dolore doloribus nemo
+                    in possimus! Placeat, eveniet non. Quis odit totam deserunt
+                    veritatis at culpa eius. Ipsum iste incidunt laborum ipsam
+                    dicta iure beatae fugiat eius, dolorem, sed nobis optio
+                    accusamus perspiciatis repellat in. Fugiat suscipit ducimus
+                    labore est facilis unde, qui eaque, rerum maiores, pariatur
+                    cum mollitia sint officiis beatae eum voluptatem facere
+                    itaque rem veniam. Recusandae, aspernatur cum. Est rem
+                    eveniet optio quisquam quasi repudiandae quos quibusdam.
+                    Minima aperiam repellat, reiciendis in dolores deserunt
+                    perferendis vitae optio alias, aut omnis autem quae, id
+                    adipisci et.
+                  </p>
+                </div>
+              </Paper>
+            ))}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
     </div>
