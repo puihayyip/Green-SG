@@ -5,6 +5,10 @@ import Avatar from "@mui/material/Avatar";
 import { randomInt } from "crypto";
 import { Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
+import Message from "./dropdownDialogs/Message";
+import CurrentBooking from "./dropdownDialogs/CurrentBooking";
+import EditProfile from "./dropdownDialogs/EditProfile";
+import Bill from "./dropdownDialogs/Bill";
 
 function stringToColor(string: string) {
   let hash = 0;
@@ -51,6 +55,7 @@ function DropdownList({ user, setUser }: AppProps) {
     editProfile: false,
     message: false,
   });
+  console.log(openMenu);
   const open = Boolean(anchorEl);
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -81,7 +86,12 @@ function DropdownList({ user, setUser }: AppProps) {
       >
         <MenuItem
           onClick={() => {
-            setOpenMenu({ ...openMenu, currentBooking: true });
+            setOpenMenu({
+              currentBooking: true,
+              bills: false,
+              editProfile: false,
+              message: false,
+            });
             handleClose();
           }}
         >
@@ -89,7 +99,12 @@ function DropdownList({ user, setUser }: AppProps) {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            setOpenMenu({ ...openMenu, bills: true });
+            setOpenMenu({
+              currentBooking: false,
+              bills: true,
+              editProfile: false,
+              message: false,
+            });
             handleClose();
           }}
         >
@@ -97,7 +112,12 @@ function DropdownList({ user, setUser }: AppProps) {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            setOpenMenu({ ...openMenu, editProfile: true });
+            setOpenMenu({
+              currentBooking: false,
+              bills: false,
+              editProfile: true,
+              message: false,
+            });
             handleClose();
           }}
         >
@@ -105,7 +125,12 @@ function DropdownList({ user, setUser }: AppProps) {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            setOpenMenu({ ...openMenu, message: true });
+            setOpenMenu({
+              currentBooking: false,
+              bills: false,
+              editProfile: false,
+              message: true,
+            });
             handleClose();
           }}
         >
@@ -137,6 +162,11 @@ function DropdownList({ user, setUser }: AppProps) {
       <p style={{ color: "white", fontWeight: "bolder", fontSize: "1.2rem" }}>
         {(user as IUser).firstName} {(user as IUser).lastName}
       </p>
+
+      <CurrentBooking openMenu={openMenu} setOpenMenu={setOpenMenu} />
+      <EditProfile openMenu={openMenu} setOpenMenu={setOpenMenu} />
+      <Bill openMenu={openMenu} setOpenMenu={setOpenMenu} />
+      <Message openMenu={openMenu} setOpenMenu={setOpenMenu} />
     </div>
   );
 }

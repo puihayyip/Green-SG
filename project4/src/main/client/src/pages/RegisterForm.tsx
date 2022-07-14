@@ -1,5 +1,5 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Alert, Button } from "@mui/material";
+import { Alert, Button, Paper } from "@mui/material";
 import axios, { AxiosResponse } from "axios";
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
@@ -106,14 +106,15 @@ const RegisterForm = ({ setUser }: AppProps) => {
         }}
       >
         {(formik) => (
-          <div
-            style={{
+          <Paper
+            elevation={24}
+            sx={{
               marginLeft: "15vw",
               maxWidth: "500px",
               fontSize: "1.5rem",
               backgroundColor: "white",
               padding: "20px",
-              border: "5px rgb(90,253,90) solid",
+              // border: "5px rgb(90,253,90) solid",
               borderRadius: "20px",
             }}
           >
@@ -160,7 +161,7 @@ const RegisterForm = ({ setUser }: AppProps) => {
                 </Button>
               </div>
             </Form>
-          </div>
+          </Paper>
         )}
       </Formik>
     </div>
