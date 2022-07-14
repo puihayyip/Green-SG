@@ -2,18 +2,16 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   MapContainer,
-  TileLayer,
   Marker,
   Popup,
-  useMapEvents,
+  TileLayer,
   useMapEvent,
-  useMap,
 } from "react-leaflet";
-import MapPopup from "./MapPopup";
-import L from "leaflet";
 import { IMscp } from "../interfaces";
+import MapPopup from "./MapPopup";
 
-function Map() {
+function Map(props: any) {
+  const selection: { lat: number; lng: number } = props.selection;
   const [marker, setMarker] = useState<IMscp[]>([]);
 
   useEffect(() => {
@@ -25,8 +23,8 @@ function Map() {
   }, []);
 
   const HandleClickMap = () => {
-    const map = useMapEvent("click", () => {
-      map.flyTo({ lat: 1.3676879846236816, lng: 103.82805893537059 }, 18);
+    const map = useMapEvent("keypress", () => {
+      map.flyTo({ lat: selection.lat, lng: selection.lng }, 18);
     });
 
     return null;

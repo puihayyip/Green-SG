@@ -18,7 +18,10 @@ export const theme = createTheme({
 
 function Main() {
   const [data, setData] = useState<IMscp[]>([]); //selected MSCP
-  const [selection, setSelection] = useState<number>(0); //selected MSCP
+  const [selection, setSelection] = useState<{ lat: number; lng: number }>({
+    lat: 0,
+    lng: 0,
+  }); //selected MSCP
 
   return (
     <>
@@ -47,7 +50,7 @@ function Main() {
             gridColumn: "2",
           }}
         >
-          <Map />
+          <Map selection={selection} />
         </div>
         <div
           style={{

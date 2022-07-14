@@ -14,15 +14,13 @@ export default function Head(props: any) {
   const data = props.data;
   const setData = props.setData;
   const setSelection = props.setSelection;
-  const selection = props.selection;
   const [field, setField] = useState("");
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    // function to automatically zone into selected station if only 1 is result remains
     if (data.length === 1) {
-      setSelection(data[0].postal);
+      setSelection({ lat: data[0].latitude, lng: data[0].longtitude });
       setField("");
     }
   };
