@@ -118,7 +118,7 @@ public class UserService {
   }
 
   public ResponseEntity<?> postUser(User user) {
-    List<User> theUser = userRepository.findByEmail(user.getEmail());
+    List<User> theUser = userRepository.findByEmailOrUsername(user.getEmail(), user.getUsername());
     if (theUser.size() == 0) {
       return new ResponseEntity<>(userRepository.save(user), HttpStatus.OK);
     } else {
@@ -130,15 +130,15 @@ public class UserService {
     String thePassword = loginForm.getPassword();
     String theEmail = loginForm.getEmail();
     String theUsername = loginForm.getUsername();
-    User theUser;
+    List<User> theUser;
     try {
-      theUser = userRepository.findByEmailOrUsername(theEmail, theUsername).get();
-      if (theUser.getPassword().equals(thePassword)) {
+      theUser = userRepository.findByEmailOrUsername(theEmail, theUsername);
+      if (theUser.size() == 1 && theUser.get(0).getPassword().equals(thePassword)) {
         System.out.println("\n" + "Logged in" + "\n");
-        return new ResponseEntity<>(theUser, HttpStatus.OK);
+        return new ResponseEntity<>(theUser.get(0), HttpStatus.OK);
       } else {
         System.out.println("\n" + "Not authorized" + "\n");
-        return new ResponseEntity<>(theUser, HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
       }
     } catch (Exception e) {
       System.out.println("\n" + e + "\n");

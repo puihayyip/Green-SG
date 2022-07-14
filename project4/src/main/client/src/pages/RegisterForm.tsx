@@ -68,7 +68,7 @@ const RegisterForm: React.FC<{}> = () => {
             setAlert(false);
           }}
         >
-          Duplicated email. Please choose another email address.
+          Duplicated email/username. Please choose another email address/username.
         </Alert>
       ) : (
         <></>
