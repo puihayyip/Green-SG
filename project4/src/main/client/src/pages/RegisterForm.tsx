@@ -1,10 +1,12 @@
-import { Button } from "@mui/material";
+import { Alert, Button, Stack } from "@mui/material";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import TextInputField from "./TextInputField";
 import PasswordInputField from "./PasswordInputField";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 interface MyFormValues {
   firstName: string;
@@ -41,10 +43,33 @@ const RegisterForm: React.FC<{}> = () => {
     username: "",
   };
 
+  const [alert, setAlert] = useState<boolean>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      setAlert(false);
+    }, 10000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, [alert]);
 
   return (
     <div style={{ height: "100vh", width: "100vw" }}>
+      {alert ? (
+        <Alert
+          severity="error"
+          onClose={() => {
+            setAlert(false);
+          }}
+        >
+          Duplicated email. Please choose another email address.
+        </Alert>
+      ) : (
+        <></>
+      )}
       <div style={{ height: "calc(50% - 459px)" }} />
       <Formik
         initialValues={initialValues}
@@ -54,8 +79,17 @@ const RegisterForm: React.FC<{}> = () => {
             actions.setSubmitting(false);
           }, 400);
 
-          
-          
+          axios
+            .post("http://localhost:8080/api/users", {
+              email: values.email,
+              firstName: values.firstName,
+              lastName: values.lastName,
+              password: values.confirmPassword,
+              username: values.username,
+            })
+            .catch(function (error) {
+              setAlert(true);
+            });
         }}
       >
         {(formik) => (

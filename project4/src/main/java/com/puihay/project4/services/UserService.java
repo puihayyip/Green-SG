@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.puihay.project4.entities.Car;
@@ -31,8 +33,14 @@ public class UserService {
     return userRepository.findAll();
   }
 
-  public User postUser(User user) {
-    return userRepository.save(user);
+  public ResponseEntity<?> postUser(User user) {
+    List<User> theUser = userRepository.findByEmail(user.getEmail());
+    if (theUser.size() == 0) {
+      return new ResponseEntity<>(userRepository.save(user), HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+    }
+
   }
 
   public Optional<User> getSingleUser(Long id) {
