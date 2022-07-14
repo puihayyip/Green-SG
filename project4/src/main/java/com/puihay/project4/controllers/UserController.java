@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.puihay.project4.entities.LoginForm;
 import com.puihay.project4.entities.User;
 import com.puihay.project4.services.UserService;
 
@@ -47,5 +48,10 @@ public class UserController {
   @PostMapping("/users")
   public ResponseEntity<?> postUser(@RequestBody User user) {
     return userService.postUser(user);
+  }
+
+  @PostMapping("/users/login")
+  public ResponseEntity<?> login(@RequestBody LoginForm loginForm) {
+    return userService.login(loginForm);
   }
 }

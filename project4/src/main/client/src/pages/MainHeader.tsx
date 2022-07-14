@@ -10,11 +10,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IMscp } from "../interfaces";
 import { theme } from "./Home";
+import LoginForm from "./LoginForm";
 
 export default function Head(props: any) {
   const data = props.data;
   const setData = props.setData;
   const setSelection = props.setSelection;
+  const [open, setOpen] = useState<boolean>(false);
   const [field, setField] = useState("");
   const navigate = useNavigate();
 
@@ -97,7 +99,7 @@ export default function Head(props: any) {
                   color: "white",
                   border: "1px white solid",
                 }}
-                onClick={() => navigate("/register")}
+                onClick={() => setOpen(true)}
               >
                 Login
               </Button>
@@ -116,6 +118,7 @@ export default function Head(props: any) {
           </Toolbar>
         </AppBar>
       </ThemeProvider>
+      <LoginForm open={open} setOpen={setOpen} />
     </Box>
   );
 }

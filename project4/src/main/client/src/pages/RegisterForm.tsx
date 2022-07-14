@@ -1,12 +1,12 @@
-import { Alert, Button, Stack } from "@mui/material";
-import { Form, Formik } from "formik";
-import * as Yup from "yup";
-import TextInputField from "./TextInputField";
-import PasswordInputField from "./PasswordInputField";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useNavigate } from "react-router-dom";
+import { Alert, Button } from "@mui/material";
 import axios from "axios";
+import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
+import PasswordInputField from "./PasswordInputField";
+import TextInputField from "./TextInputField";
 
 interface MyFormValues {
   firstName: string;
@@ -57,7 +57,10 @@ const RegisterForm: React.FC<{}> = () => {
   }, [alert]);
 
   return (
-    <div style={{ height: "100vh", width: "100vw" }}>
+    <div
+      className="registration-page"
+      style={{ height: "100vh", width: "100vw" }}
+    >
       {alert ? (
         <Alert
           severity="error"
@@ -87,6 +90,7 @@ const RegisterForm: React.FC<{}> = () => {
               password: values.confirmPassword,
               username: values.username,
             })
+            .then(() => navigate("/"))
             .catch(function (error) {
               setAlert(true);
             });
