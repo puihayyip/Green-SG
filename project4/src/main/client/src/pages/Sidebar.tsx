@@ -27,6 +27,7 @@ function Sidebar(props: any) {
                 paddingBottom: "10px",
                 paddingTop: "10px",
                 cursor: "pointer",
+                backgroundColor: "white",
               }}
               onClick={() => setSelection(location.postal)}
             >

@@ -1,8 +1,10 @@
 import { Button } from "@mui/material";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-
-import InputField from "./InputField";
+import TextInputField from "./TextInputField";
+import PasswordInputField from "./PasswordInputField";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useNavigate } from "react-router-dom";
 
 interface MyFormValues {
   firstName: string;
@@ -39,48 +41,82 @@ const RegisterForm: React.FC<{}> = () => {
     username: "",
   };
 
+  const navigate = useNavigate();
+
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validate}
-      onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
-        setTimeout(() => {
-          setSubmitting(false);
-        }, 400);
-      }}
-    >
-      {(formik) => (
-        <div style={{ margin: "auto", maxWidth: "500px", fontSize: "1.5rem" }}>
-          <h1>Sign Up</h1>
-          <Form
-            onSubmit={(e) => {
-              e.preventDefault();
-              formik.handleSubmit(e);
+    <div style={{ height: "100vh", width: "100vw" }}>
+      <div style={{ height: "calc(50% - 459px)" }} />
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validate}
+        onSubmit={(values, actions) => {
+          setTimeout(() => {
+            actions.setSubmitting(false);
+          }, 400);
+
+          
+          
+        }}
+      >
+        {(formik) => (
+          <div
+            style={{
+              marginLeft: "15vw",
+              maxWidth: "500px",
+              fontSize: "1.5rem",
+              backgroundColor: "white",
+              padding: "20px",
+              border: "5px rgb(90,253,90) solid",
+              borderRadius: "20px",
             }}
           >
-            <InputField label="First Name" name="firstName" type="" />
-            <InputField label="Last Name" name="lastName" type="" />
-            <InputField label="Email" name="email" type="" />
-            <InputField label="Username" name="username" type="" />
-            <InputField label="Password" name="password" type="password" />
-            <InputField
-              label="Confirm Password"
-              name="confirmPassword"
-              type="password"
-            />
-            <div style={{ display: "flex", gap: "40px" }}>
-              <Button variant="contained" color="primary" type="submit">
-                Submit
-              </Button>
-              <Button variant="contained" color="error">
-                Reset
-              </Button>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "baseline",
+              }}
+            >
+              <ArrowBackIcon
+                fontSize="large"
+                sx={{ cursor: "pointer" }}
+                onClick={() => navigate("/")}
+              />
+              <h1 style={{ margin: "0" }}>Sign Up</h1>
+              <div style={{ width: "35px", height: "35px" }} />
             </div>
-          </Form>
-        </div>
-      )}
-    </Formik>
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                formik.handleSubmit(e);
+              }}
+            >
+              <TextInputField label="First Name" name="firstName" />
+              <TextInputField label="Last Name" name="lastName" />
+              <TextInputField label="Email" name="email" />
+              <TextInputField label="Username" name="username" />
+              <PasswordInputField label="Password" name="password" />
+              <PasswordInputField
+                label="Confirm Password"
+                name="confirmPassword"
+              />
+              <div style={{ display: "flex", gap: "40px" }}>
+                <Button variant="contained" color="primary" type="submit">
+                  Submit
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() => formik.resetForm()}
+                >
+                  Reset
+                </Button>
+              </div>
+            </Form>
+          </div>
+        )}
+      </Formik>
+    </div>
   );
 };
 

@@ -7,6 +7,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IMscp } from "../interfaces";
 import { theme } from "./Home";
 
@@ -15,6 +16,7 @@ export default function Head(props: any) {
   const setData = props.setData;
   const setSelection = props.setSelection;
   const [field, setField] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -88,16 +90,29 @@ export default function Head(props: any) {
                 </button>
               </div>
             </form>
-            <Button
-              sx={{
-                fontWeight: "bold",
-                color: "white",
-                border: "1px white solid",
-                marginLeft: "144px",
-              }}
-            >
-              Login
-            </Button>
+            <div style={{ marginLeft: "41px" }}>
+              <Button
+                sx={{
+                  fontWeight: "bold",
+                  color: "white",
+                  border: "1px white solid",
+                }}
+                onClick={() => navigate("/register")}
+              >
+                Login
+              </Button>
+              <Button
+                sx={{
+                  fontWeight: "bold",
+                  color: "white",
+                  border: "1px white solid",
+                  marginLeft: "10px",
+                }}
+                onClick={() => navigate("/register")}
+              >
+                Register{" "}
+              </Button>
+            </div>
           </Toolbar>
         </AppBar>
       </ThemeProvider>
