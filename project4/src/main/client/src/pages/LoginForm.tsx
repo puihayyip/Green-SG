@@ -7,13 +7,14 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
+import { IUser } from "../interfaces";
 
 interface AppProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setUser: React.Dispatch<React.SetStateAction<string>>;
+  setUser: React.Dispatch<React.SetStateAction<IUser | AxiosResponse>>;
 }
 
 export default function LoginForm({ open, setOpen, setUser }: AppProps) {
@@ -43,7 +44,7 @@ export default function LoginForm({ open, setOpen, setUser }: AppProps) {
         email: e.target[0].value,
       })
       .then((data) => {
-        setUser(data.data.username);
+        setUser(data.data);
         setOpen(false);
       })
       .catch(function (error) {

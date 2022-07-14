@@ -5,17 +5,17 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IMscp } from "../interfaces";
+import { IMscp, IUser } from "../interfaces";
 import { theme } from "./Home";
 import LoginForm from "./LoginForm";
-import PersonIcon from "@mui/icons-material/Person";
+import DropdownList from "./DropdownList";
 
 interface AppProps {
-  setUser: React.Dispatch<React.SetStateAction<string>>;
-  user: string;
+  setUser: React.Dispatch<React.SetStateAction<IUser | AxiosResponse>>;
+  user: IUser | AxiosResponse;
   data: IMscp[];
   setData: React.Dispatch<React.SetStateAction<IMscp[]>>;
   setSelection: React.Dispatch<
@@ -36,10 +36,8 @@ export default function Head({
   const [open, setOpen] = useState<boolean>(false);
   const [field, setField] = useState<string>("");
   const navigate = useNavigate();
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
-
     if (data.length === 1) {
       setSelection({ lat: data[0].latitude, lng: data[0].longtitude });
       setField("");
@@ -110,7 +108,7 @@ export default function Head({
                 </button>
               </div>
             </form>
-            {user ? (
+            {(user as IUser).username === "" ? (
               <div style={{ marginLeft: "41px" }}>
                 <Button
                   sx={{
@@ -135,17 +133,7 @@ export default function Head({
                 </Button>
               </div>
             ) : (
-              <div style={{ display: "flex", gap: "10px" }}>
-                <PersonIcon
-                  fontSize="large"
-                  sx={{
-                    border: "2px solid white",
-                    borderRadius: "50%",
-                    color: "white",
-                    cursor: "pointer",
-                  }}
-                />
-              </div>
+              <DropdownList user={user} />
             )}
           </Toolbar>
         </AppBar>

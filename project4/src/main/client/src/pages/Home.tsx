@@ -1,9 +1,10 @@
 import { colors, createTheme } from "@mui/material";
 import { useState } from "react";
-import { IMscp } from "../interfaces";
+import { IMscp, IUser } from "../interfaces";
 import MainHeader from "./MainHeader";
 import Sidebar from "./Sidebar";
 import Map from "./Map";
+import { AxiosResponse } from "axios";
 
 export const theme = createTheme({
   palette: {
@@ -17,8 +18,8 @@ export const theme = createTheme({
 });
 
 interface AppProps {
-  setUser: React.Dispatch<React.SetStateAction<string>>;
-  user: string;
+  setUser: React.Dispatch<React.SetStateAction<IUser | AxiosResponse>>;
+  user: IUser | AxiosResponse;
 }
 
 function Main({ setUser, user }: AppProps) {

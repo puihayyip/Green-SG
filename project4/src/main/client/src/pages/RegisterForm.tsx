@@ -1,10 +1,11 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Alert, Button } from "@mui/material";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { IUser } from "../interfaces";
 import PasswordInputField from "./PasswordInputField";
 import TextInputField from "./TextInputField";
 
@@ -34,7 +35,7 @@ const validate = Yup.object().shape({
 });
 
 interface AppProps {
-  setUser: React.Dispatch<React.SetStateAction<string>>;
+  setUser: React.Dispatch<React.SetStateAction<IUser | AxiosResponse>>;
 }
 
 const RegisterForm = ({ setUser }: AppProps) => {
@@ -95,8 +96,8 @@ const RegisterForm = ({ setUser }: AppProps) => {
               password: values.confirmPassword,
               username: values.username,
             })
-            .then(() => {
-              setUser(values.username);
+            .then((data) => {
+              setUser(data.data);
               navigate("/");
             })
             .catch(function (error) {
