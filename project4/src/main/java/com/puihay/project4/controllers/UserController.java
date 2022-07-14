@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.puihay.project4.entities.LoginForm;
+import com.puihay.project4.entities.PutForm;
 import com.puihay.project4.entities.User;
 import com.puihay.project4.services.UserService;
 
@@ -53,5 +54,17 @@ public class UserController {
   @PostMapping("/users/login")
   public ResponseEntity<?> login(@RequestBody LoginForm loginForm) {
     return userService.login(loginForm);
+  }
+
+  @PutMapping("/users/change")
+  public ResponseEntity<?> update(@RequestParam String field, @RequestParam String value,
+      @RequestBody PutForm putForm) {
+    return userService.update(field, value, putForm);
+  }
+
+  @PutMapping("/users/change-name")
+  public ResponseEntity<?> updateName(@RequestParam String first, @RequestParam String last,
+      @RequestBody PutForm putForm) {
+    return userService.updateName(first, last, putForm);
   }
 }

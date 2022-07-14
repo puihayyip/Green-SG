@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.puihay.project4.entities.Car;
 import com.puihay.project4.entities.LoginForm;
 import com.puihay.project4.entities.Mscp;
+import com.puihay.project4.entities.PutForm;
 import com.puihay.project4.entities.User;
 import com.puihay.project4.repository.CarRepository;
 import com.puihay.project4.repository.MscpRepository;
@@ -142,6 +143,49 @@ public class UserService {
       }
     } catch (Exception e) {
       System.out.println("\n" + e + "\n");
+      return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+    }
+  }
+
+  public ResponseEntity<?> update(String field, String value, PutForm putForm) {
+    long id = putForm.getId();
+    String password = putForm.getPassword();
+    Optional<User> theUsers = userRepository.findById(id);
+    User theUser = theUsers.get();
+    if (theUser.getPassword().equals(password)) {
+      if (field.equals("email")) {
+        theUser.setEmail(value);
+        userRepository.save(theUser);
+        return new ResponseEntity<>(theUser, HttpStatus.OK);
+      } else if (field.equals("username")) {
+        theUser.setUsername(value);
+        userRepository.save(theUser);
+        return new ResponseEntity<>(theUser, HttpStatus.OK);
+      } else if (field.equals("password")) {
+        theUser.setPassword(value);
+        userRepository.save(theUser);
+        return new ResponseEntity<>(theUser, HttpStatus.OK);
+      }
+    } else {
+      System.out.println("\n" + "Not authorized" + "\n");
+      return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+    }
+
+    return null;
+  }
+
+  public ResponseEntity<?> updateName(String first, String last, PutForm putForm) {
+    long id = putForm.getId();
+    String password = putForm.getPassword();
+    Optional<User> theUsers = userRepository.findById(id);
+    User theUser = theUsers.get();
+    if (theUser.getPassword().equals(password)) {
+      theUser.setFirstName(first);
+      theUser.setLastName(last);
+      userRepository.save(theUser);
+      return new ResponseEntity<>(theUser, HttpStatus.OK);
+    } else {
+      System.out.println("\n" + "Not authorized" + "\n");
       return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
     }
   }

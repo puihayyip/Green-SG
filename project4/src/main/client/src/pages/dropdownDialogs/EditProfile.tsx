@@ -14,8 +14,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
+import { IUser } from "../../interfaces";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -90,6 +92,8 @@ const EditProfile: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
     setVisible(!visible);
   };
 
+  const user: IUser = JSON.parse(localStorage.getItem("User") as string);
+
   return (
     <div>
       <Dialog
@@ -120,170 +124,272 @@ const EditProfile: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
                 </Tabs>
               </Box>
               <TabPanel value={value} index={0}>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="name"
-                  label="Email"
-                  type="text"
-                  fullWidth
-                  variant="standard"
-                />
-                <TextField
-                  fullWidth
-                  variant="standard"
-                  type={visible ? "text" : "password"}
-                  label="Confirm password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          edge="end"
-                        >
-                          {!visible ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
+                <form
+                  onSubmit={(e: any) => {
+                    e.preventDefault();
+                    axios.put<any>(
+                      "http://localhost:8080/api/users/change/",
+                      {
+                        id: user.id,
+                        password: e.target[1].value,
+                      },
+                      {
+                        params: {
+                          field: "username",
+                          value: e.target[0].value,
+                        },
+                      }
+                    );
                   }}
-                />
+                >
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Username"
+                    type="text"
+                    fullWidth
+                    variant="standard"
+                  />
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    type={visible ? "text" : "password"}
+                    label="Confirm password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            edge="end"
+                          >
+                            {!visible ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <DialogActions sx={{ marginTop: "20px" }}>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose} type="submit">
+                      Submit
+                    </Button>
+                  </DialogActions>
+                </form>
               </TabPanel>
               <TabPanel value={value} index={1}>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="name"
-                  label="Username"
-                  type="text"
-                  fullWidth
-                  variant="standard"
-                />
-                <TextField
-                  fullWidth
-                  variant="standard"
-                  type={visible ? "text" : "password"}
-                  label="Confirm password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          edge="end"
-                        >
-                          {!visible ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
+                <form
+                  onSubmit={(e: any) => {
+                    e.preventDefault();
+                    axios.put<any>(
+                      "http://localhost:8080/api/users/change/",
+                      {
+                        id: user.id,
+                        password: e.target[1].value,
+                      },
+                      {
+                        params: {
+                          field: "email",
+                          value: e.target[0].value,
+                        },
+                      }
+                    );
                   }}
-                />
+                >
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Email"
+                    type="text"
+                    fullWidth
+                    variant="standard"
+                  />
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    type={visible ? "text" : "password"}
+                    label="Confirm password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            edge="end"
+                          >
+                            {!visible ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <DialogActions sx={{ marginTop: "20px" }}>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose} type="submit">
+                      Submit
+                    </Button>
+                  </DialogActions>
+                </form>
               </TabPanel>
               <TabPanel value={value} index={2}>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="name"
-                  label="First name"
-                  type="text"
-                  fullWidth
-                  variant="standard"
-                />
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="name"
-                  label="Last name"
-                  type="text"
-                  fullWidth
-                  variant="standard"
-                />
-                <TextField
-                  fullWidth
-                  variant="standard"
-                  type={visible ? "text" : "password"}
-                  label="Confirm password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          edge="end"
-                        >
-                          {!visible ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
+                <form
+                  onSubmit={(e: any) => {
+                    e.preventDefault();
+                    axios.put<any>(
+                      "http://localhost:8080/api/users/change-name/",
+                      {
+                        id: user.id,
+                        password: e.target[2].value,
+                      },
+                      {
+                        params: {
+                          first: e.target[0].value,
+                          last: e.target[1].value,
+                        },
+                      }
+                    );
                   }}
-                />
+                >
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="First name"
+                    type="text"
+                    fullWidth
+                    variant="standard"
+                  />
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Last name"
+                    type="text"
+                    fullWidth
+                    variant="standard"
+                  />
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    type={visible ? "text" : "password"}
+                    label="Confirm password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            edge="end"
+                          >
+                            {!visible ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <DialogActions sx={{ marginTop: "20px" }}>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose} type="submit">
+                      Submit
+                    </Button>
+                  </DialogActions>
+                </form>
               </TabPanel>
               <TabPanel value={value} index={3}>
-                <TextField
-                  fullWidth
-                  variant="standard"
-                  type={visible ? "text" : "password"}
-                  label="Old password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          edge="end"
-                        >
-                          {!visible ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
+                <form
+                  onSubmit={(e: any) => {
+                    e.preventDefault();
+                    axios.put<any>(
+                      "http://localhost:8080/api/users/change/",
+                      {
+                        id: user.id,
+                        password: e.target[0].value,
+                      },
+                      {
+                        params: {
+                          field: "password",
+                          value: e.target[2].value,
+                        },
+                      }
+                    );
                   }}
-                />
-                <TextField
-                  fullWidth
-                  variant="standard"
-                  type={visible ? "text" : "password"}
-                  label="New password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          edge="end"
-                        >
-                          {!visible ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  variant="standard"
-                  type={visible ? "text" : "password"}
-                  label="Confirm new password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          edge="end"
-                        >
-                          {!visible ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+                >
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    type={visible ? "text" : "password"}
+                    label="Old password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            edge="end"
+                          >
+                            {!visible ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    type={visible ? "text" : "password"}
+                    label="New password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            edge="end"
+                          >
+                            {!visible ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    type={visible ? "text" : "password"}
+                    label="Confirm new password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            edge="end"
+                          >
+                            {!visible ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <DialogActions sx={{ marginTop: "20px" }}>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose} type="submit">
+                      Submit
+                    </Button>
+                  </DialogActions>
+                </form>
               </TabPanel>
             </Box>
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
+        {/* <DialogActions sx={{marginTop:"20px"}}>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Submit</Button>
-        </DialogActions>
+          <Button onClick={handleClose} type="submit">
+            Submit
+          </Button>
+        </DialogActions> */}
       </Dialog>
     </div>
   );

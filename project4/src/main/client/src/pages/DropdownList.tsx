@@ -55,7 +55,6 @@ function DropdownList({ user, setUser }: AppProps) {
     editProfile: false,
     message: false,
   });
-  console.log(openMenu);
   const open = Boolean(anchorEl);
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
