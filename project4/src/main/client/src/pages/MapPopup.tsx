@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IMscp } from "../interfaces";
 import DriveEtaIcon from "@mui/icons-material/DriveEta";
 import LocalParkingIcon from "@mui/icons-material/LocalParking";
@@ -50,9 +50,24 @@ function MapPopup(props: any) {
     }
   };
 
-  const handleEnd = () => {};
+  const handleEnd = () => {
+    const user = JSON.parse(localStorage.getItem("User") as string);
+    console.log(typeof user.id);
+    setUserId(user.id);
+    axios
+      .put(
+        `http://localhost:8080/api/users/end?userId=${
+          user.id
+        }&mscp=${eachPoint.postal.toString()}`
+      )
+      .then((data) => localStorage.setItem("User", JSON.stringify(data.data)));
+    return;
+  };
   const buttonArr: any = [];
-  if (localStorage.getItem("User")) {
+  if (
+    localStorage.getItem("User") &&
+    JSON.parse(localStorage.getItem("User") as string).id !== 0
+  ) {
     !JSON.parse(localStorage.getItem("User") as string).car
       ? buttonArr.push(
           <Button

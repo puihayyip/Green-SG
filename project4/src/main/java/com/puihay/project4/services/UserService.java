@@ -75,7 +75,7 @@ public class UserService {
     return theUser;
   }
 
-  public User end(Long userId, int mscpPostal) {
+  public User end(Long userId, Integer mscpPostal) {
     User theUser = userRepository.findById(userId).get();
     Mscp theMscp = mscpRepository.findByPostal(mscpPostal);
     Car theCar = theUser.getCar();

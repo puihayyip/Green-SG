@@ -16,10 +16,10 @@ import org.springframework.lang.NonNull;
 public class Car {
 
   @Id
-  @Column(name = "id")
+  @Column(name = "car_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   // @JsonIgnore
-  private Long id;
+  private Long car_id;
 
   @NonNull
   @Column(name = "carplate_number")
@@ -46,11 +46,11 @@ public class Car {
   }
 
   public Long getId() {
-    return id;
+    return car_id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setId(Long car_id) {
+    this.car_id = car_id;
   }
 
   public String getCarplate() {
@@ -87,7 +87,7 @@ public class Car {
 
   @Override
   public String toString() {
-    return "Car [carplate=" + carplate + ", endTime=" + endTime + ", id=" + id + ", location=" + location
+    return "Car [carplate=" + carplate + ", endTime=" + endTime + ", id=" + car_id + ", location=" + location
         + ", startTime=" + startTime + "]";
   }
 

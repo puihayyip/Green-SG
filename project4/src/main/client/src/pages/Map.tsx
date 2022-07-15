@@ -12,10 +12,9 @@ import MapPopup from "./MapPopup";
 
 interface AppProps {
   selection: { lat: number; lng: number };
-  setReload: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Map({ selection, setReload }: AppProps) {
+function Map({ selection }: AppProps) {
   const [marker, setMarker] = useState<IMscp[]>([]);
 
   useEffect(() => {
@@ -56,7 +55,7 @@ function Map({ selection, setReload }: AppProps) {
             key={index}
           >
             <Popup position={[eachPoint.latitude, eachPoint.longtitude]}>
-              <MapPopup eachPoint={eachPoint} setReload={setReload} />
+              <MapPopup eachPoint={eachPoint} />
             </Popup>
           </Marker>
         );

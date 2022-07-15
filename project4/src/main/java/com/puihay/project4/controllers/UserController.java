@@ -42,7 +42,7 @@ public class UserController {
   }
 
   @PutMapping("/users/end")
-  public User end(@RequestParam Long userId, @RequestParam int mscp) {
+  public User end(@RequestParam Long userId, @RequestParam Integer mscp) {
     return userService.end(userId, mscp);
   }
 
