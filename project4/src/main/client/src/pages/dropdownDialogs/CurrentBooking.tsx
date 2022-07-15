@@ -64,6 +64,7 @@ const CurrentBooking: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
     const elaspedTime: number =
       (nowTime.hour() - startTime.hour()) * 60 +
       (nowTime.minute() - startTime.minute());
+    console.log(startTime);
     rows = [
       createData(car.carplate, car.startTime, elaspedTime, elaspedTime * 0.42),
     ];

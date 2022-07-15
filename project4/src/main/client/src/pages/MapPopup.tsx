@@ -34,16 +34,16 @@ function MapPopup(props: any) {
           })
           .then((data) => {
             setCarId(data.data.id);
-            console.log(data.data.id);
+            console.log(data);
           })
-          .then(() => {
+          .then((data) => {
             axios
               .put(
                 `http://localhost:8080/api/users/book?userId=${userId}&carId=${carId}`
               )
-              .then((data) =>
-                localStorage.setItem("User", JSON.stringify(data.data))
-              );
+              .then((data) => {
+                localStorage.setItem("User", JSON.stringify(data.data));
+              });
           });
         return;
       }
