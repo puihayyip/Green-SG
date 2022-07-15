@@ -47,7 +47,7 @@ export default function LoginForm({ open, setOpen, setUser }: AppProps) {
         setUser(data.data);
         setOpen(false);
       })
-      .catch(function (error) {
+      .catch(function () {
         setAlert(true);
       });
   };

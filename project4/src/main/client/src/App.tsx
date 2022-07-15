@@ -22,6 +22,10 @@ function App() {
       endTime: "",
     },
   });
+  const [selection, setSelection] = useState<{ lat: number; lng: number }>({
+    lat: 0,
+    lng: 0,
+  });
 
   useEffect(() => {
     localStorage.setItem("User", JSON.stringify(user));
@@ -31,7 +35,17 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home setUser={setUser} user={user} />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                setUser={setUser}
+                user={user}
+                selection={selection}
+                setSelection={setSelection}
+              />
+            }
+          />
           <Route
             path="/register"
             element={<RegisterForm setUser={setUser} />}

@@ -5,6 +5,7 @@ import MainHeader from "./MainHeader";
 import Sidebar from "./Sidebar";
 import Map from "./Map";
 import { AxiosResponse } from "axios";
+import Footer from "./Footer";
 
 export const theme = createTheme({
   palette: {
@@ -16,18 +17,19 @@ export const theme = createTheme({
     },
   },
 });
-
+interface ISelection {
+  lat: number;
+  lng: number;
+}
 interface AppProps {
   setUser: React.Dispatch<React.SetStateAction<IUser | AxiosResponse>>;
   user: IUser | AxiosResponse;
+  selection: ISelection;
+  setSelection: React.Dispatch<React.SetStateAction<ISelection>>;
 }
 
-function Main({ setUser, user }: AppProps) {
+function Main({ setUser, user, setSelection, selection }: AppProps) {
   const [data, setData] = useState<IMscp[]>([]); //selected MSCP
-  const [selection, setSelection] = useState<{ lat: number; lng: number }>({
-    lat: 0,
-    lng: 0,
-  }); //selected MSCP
 
   return (
     <>
@@ -66,12 +68,11 @@ function Main({ setUser, user }: AppProps) {
         </div>
         <div
           style={{
-            border: "1px solid pink",
             gridColumn: "1/3",
             gridRow: "2",
           }}
         >
-          <h1>Footer</h1>
+          <Footer />
         </div>
       </div>
     </>

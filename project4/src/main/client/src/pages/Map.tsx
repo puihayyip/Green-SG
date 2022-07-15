@@ -16,6 +16,7 @@ interface AppProps {
 
 function Map({ selection }: AppProps) {
   const [marker, setMarker] = useState<IMscp[]>([]);
+  const [map, setMap] = useState()
 
   useEffect(() => {
     axios
@@ -26,8 +27,8 @@ function Map({ selection }: AppProps) {
   }, []);
 
   const HandleClickMap = () => {
-    const map = useMapEvent("keypress", () => {
-      map.flyTo({ lat: selection.lat, lng: selection.lng }, 18);
+    const map = useMapEvent("click", () => {
+      map.flyTo({ lat: selection.lat, lng: selection.lng }, 16);
     });
 
     return null;
@@ -35,6 +36,7 @@ function Map({ selection }: AppProps) {
 
   return (
     <MapContainer
+    
       center={[1.3676879846236816, 103.82805893537059]}
       zoom={12}
       scrollWheelZoom={true}

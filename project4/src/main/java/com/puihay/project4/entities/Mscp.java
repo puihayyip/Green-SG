@@ -31,6 +31,10 @@ public class Mscp {
   @Column(name = "postal")
   private Integer postal;
 
+  @NonNull
+  @Column(name = "spostal")
+  private String spostal;
+
   @Column(name = "spot1")
   private String spot1;
 
@@ -52,11 +56,13 @@ public class Mscp {
   public Mscp() {
   }
 
-  public Mscp(String block, String street, Integer postal, String spot1, String spot2, String spot3, String spot4,
+  public Mscp(String block, String street, Integer postal, String sportal, String spot1, String spot2, String spot3,
+      String spot4,
       double latitude, double longtitude) {
     this.block = block;
     this.street = street;
     this.postal = postal;
+    this.spostal = spostal;
     this.spot1 = spot1;
     this.spot2 = spot2;
     this.spot3 = spot3;
@@ -149,6 +155,14 @@ public class Mscp {
     return "Mscp [block=" + block + ", id=" + id + ", latitude=" + latitude + ", longtitude=" + longtitude + ", postal="
         + postal + ", spot1=" + spot1 + ", spot2=" + spot2 + ", spot3=" + spot3 + ", spot4=" + spot4 + ", street="
         + street + "]";
+  }
+
+  public String getSpostal() {
+    return spostal;
+  }
+
+  public void setSpostal(String spostal) {
+    this.spostal = spostal;
   }
 
 }

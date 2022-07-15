@@ -7,7 +7,7 @@ import { ThemeProvider } from "@emotion/react";
 
 function Sidebar(props: any) {
   const data = props.data;
-  const setData = props.setData;
+  // const setData = props.setData;
   const setSelection = props.setSelection;
 
   const newData = findDetails(data);
@@ -29,7 +29,12 @@ function Sidebar(props: any) {
                 cursor: "pointer",
                 backgroundColor: "white",
               }}
-              onClick={() => setSelection(location.postal)}
+              onClick={() =>
+                setSelection({
+                  lat: location.latitude,
+                  lng: location.longtitude,
+                })
+              }
             >
               <p
                 key={index}

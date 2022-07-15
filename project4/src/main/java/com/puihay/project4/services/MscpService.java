@@ -26,7 +26,7 @@ public class MscpService {
   }
 
   public List<Mscp> search(String field) {
-    return mscpRepository.findByStreetContainingIgnoreCaseOrBlockContainingIgnoreCaseOrPostalStartsWith(field,
+    return mscpRepository.findByStreetContainingIgnoreCaseOrBlockContainingIgnoreCaseOrSpostalStartsWith(field,
         field, field);
 
   }
