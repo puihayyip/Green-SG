@@ -56,6 +56,7 @@ function Main({ setUser, user, setSelection, selection }: AppProps) {
         <div
           style={{
             gridColumn: "1",
+            gridRow: "1/3",
             overflow: "hidden",
             overflowY: "auto",
           }}
@@ -65,6 +66,7 @@ function Main({ setUser, user, setSelection, selection }: AppProps) {
         <div
           style={{
             gridColumn: "2",
+            gridRow: "1/3",
           }}
         >
           <Map selection={selection} setReload={setReload} reload={reload} />
