@@ -12,6 +12,7 @@ import { IMscp, IUser } from "../interfaces";
 import { theme } from "./Home";
 import LoginForm from "./LoginForm";
 import DropdownList from "./DropdownList";
+import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
 
 interface AppProps {
   setUser: React.Dispatch<React.SetStateAction<IUser | AxiosResponse>>;
@@ -53,7 +54,6 @@ export default function Head({
       .get<Array<IMscp>>(`http://localhost:8080/api/mscp/search?field=${field}`)
       .then((res: any) => {
         setData(res.data);
-        // setReload((reload) => !reload);
       });
   }, [field, reload]);
 
@@ -73,11 +73,13 @@ export default function Head({
               component="div"
               sx={{
                 fontWeight: "bold",
+                fontFamily: "Indie Flower, cursive",
               }}
               align="left"
               color="white"
             >
               GreenSG
+              <EnergySavingsLeafIcon />
             </Typography>
             <form onSubmit={(e) => handleSubmit(e)}>
               <div style={{ display: "flex", gap: "10px" }}>

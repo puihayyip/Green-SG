@@ -69,14 +69,14 @@ function Main({ setUser, user, setSelection, selection }: AppProps) {
         >
           <Map selection={selection} setReload={setReload} reload={reload} />
         </div>
-        <div
+        {/* <div
           style={{
             gridColumn: "1/3",
             gridRow: "2",
           }}
         >
           <Footer />
-        </div>
+        </div> */}
       </div>
     </>
   );
