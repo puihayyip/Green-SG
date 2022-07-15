@@ -30,6 +30,7 @@ interface AppProps {
 
 function Main({ setUser, user, setSelection, selection }: AppProps) {
   const [data, setData] = useState<IMscp[]>([]); //selected MSCP
+  const [reload, setReload] = useState<boolean>(false);
 
   return (
     <>
@@ -40,6 +41,8 @@ function Main({ setUser, user, setSelection, selection }: AppProps) {
           setSelection={setSelection}
           setUser={setUser}
           user={user}
+          reload={reload}
+          setReload={setReload}
         />
       </header>
       <div
@@ -64,7 +67,7 @@ function Main({ setUser, user, setSelection, selection }: AppProps) {
             gridColumn: "2",
           }}
         >
-          <Map selection={selection} />
+          <Map selection={selection} setReload={setReload} reload={reload} />
         </div>
         <div
           style={{

@@ -13,9 +13,11 @@ import MapPopup from "./MapPopup";
 
 interface AppProps {
   selection: { lat: number; lng: number };
+  reload: boolean;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Map({ selection }: AppProps) {
+function Map({ selection, reload, setReload }: AppProps) {
   const [marker, setMarker] = useState<IMscp[]>([]);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ function Map({ selection }: AppProps) {
       .then((res: any) => {
         setMarker(res.data);
       });
-  }, []);
+  }, [reload]);
 
   const HandleClickMap = () => {
     const map = useMapEvent("keypress", () => {
@@ -56,7 +58,7 @@ function Map({ selection }: AppProps) {
             key={index}
           >
             <Popup position={[eachPoint.latitude, eachPoint.longtitude]}>
-              <MapPopup eachPoint={eachPoint} />
+              <MapPopup eachPoint={eachPoint} setReload={setReload} />
             </Popup>
           </Marker>
         );

@@ -24,6 +24,8 @@ interface AppProps {
       lng: number;
     }>
   >;
+  reload: boolean;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function Head({
@@ -32,6 +34,8 @@ export default function Head({
   setSelection,
   setUser,
   user,
+  reload,
+  setReload,
 }: AppProps) {
   const [open, setOpen] = useState<boolean>(false);
   const [field, setField] = useState<string>("");
@@ -47,8 +51,11 @@ export default function Head({
   useEffect(() => {
     axios
       .get<Array<IMscp>>(`http://localhost:8080/api/mscp/search?field=${field}`)
-      .then((res: any) => setData(res.data));
-  }, [field]);
+      .then((res: any) => {
+        setData(res.data);
+        // setReload((reload) => !reload);
+      });
+  }, [field, reload]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
