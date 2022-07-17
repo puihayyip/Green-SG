@@ -11,8 +11,6 @@ function MapPopup(props: any) {
   const eachPoint: IMscp = props.eachPoint;
   const setReload: React.Dispatch<React.SetStateAction<boolean>> =
     props.setReload;
-  const [carId, setCarId] = useState<number>(0);
-  const [userId, setUserId] = useState<number>(0);
 
   const arr: string[] = [
     eachPoint.spot1,
@@ -23,7 +21,6 @@ function MapPopup(props: any) {
 
   const handleBook = () => {
     const user = JSON.parse(localStorage.getItem("User") as string);
-    setUserId(user.id);
     for (let each of arr) {
       if (each !== null) {
         axios
@@ -33,13 +30,9 @@ function MapPopup(props: any) {
             },
           })
           .then((data) => {
-            setCarId(data.data.id);
-            // console.log(data);
-            // })
-            // .then((data) => {
             axios
               .put(
-                `http://localhost:8080/api/users/book?userId=${userId}&carId=${data.data.id}`
+                `http://localhost:8080/api/users/book?userId=${user.id}&carId=${data.data.id}`
               )
               .then((data) => {
                 localStorage.setItem("User", JSON.stringify(data.data));
@@ -53,15 +46,16 @@ function MapPopup(props: any) {
 
   const handleEnd = () => {
     const user = JSON.parse(localStorage.getItem("User") as string);
-    console.log(typeof user.id);
-    setUserId(user.id);
     axios
       .put(
         `http://localhost:8080/api/users/end?userId=${
           user.id
         }&mscp=${eachPoint.postal.toString()}`
       )
-      .then((data) => localStorage.setItem("User", JSON.stringify(data.data)));
+      .then((data) => {
+        localStorage.setItem("User", JSON.stringify(data.data));
+        setReload((reload) => !reload);
+      });
     return;
   };
   const buttonArr: any = [];
@@ -94,6 +88,9 @@ function MapPopup(props: any) {
 
   return (
     <ThemeProvider theme={theme}>
+      <div className="inside-name">
+        {eachPoint.block} {eachPoint.street}
+      </div>
       <div className="inside-popup">
         <div className="inside-1">
           <DriveEtaIcon color="primary" />

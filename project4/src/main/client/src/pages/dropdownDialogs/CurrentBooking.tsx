@@ -9,8 +9,9 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import moment from "moment";
+import moment, { Moment } from "moment";
 import * as React from "react";
+import { IUser } from "../../interfaces";
 
 interface IState {
   currentBooking: boolean;
@@ -45,7 +46,7 @@ const CurrentBooking: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
   }, [openMenu.currentBooking]);
 
   ///////////////////////////////////////////////////////
-  const user = JSON.parse(localStorage.getItem("User") as string);
+  const user: IUser = JSON.parse(localStorage.getItem("User") as string);
   const car = user.car;
   function createData(
     Car: string,
@@ -59,14 +60,18 @@ const CurrentBooking: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
 
   let rows = [createData("0", "0", 0, 0)];
   if (car) {
-    const startTime: any = moment(car.startTime, "HH:mm:ss");
-    const nowTime: any = moment(Date.now(), "x");
+    const startTime: Moment = moment(car.startTime, "HH:mm:ss");
+    const nowTime: Moment = moment(Date.now(), "x");
     const elaspedTime: number =
       (nowTime.hour() - startTime.hour()) * 60 +
       (nowTime.minute() - startTime.minute());
-    console.log(startTime);
     rows = [
-      createData(car.carplate, car.startTime, elaspedTime, elaspedTime * 0.42),
+      createData(
+        car.carplate,
+        car.startTime.split(".")[0],
+        elaspedTime,
+        elaspedTime * 0.42
+      ),
     ];
   }
   ///////////////////////////////////////////////////////
