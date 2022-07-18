@@ -34,4 +34,10 @@ public class CarController {
   public Car postCar(@RequestBody Car car) {
     return carService.postCar(car);
   }
+
+  @PostMapping("/cars/seed")
+  public List<Car> carSeed() {
+    return carService.carSeed();
+  }
+
 }

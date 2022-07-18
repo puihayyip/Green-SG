@@ -29,10 +29,16 @@ public class MscpController {
   public Mscp postMscp(@RequestBody Mscp mscp) {
     return mscpService.postMscp(mscp);
   }
-
+  
   @GetMapping("/mscp/search")
   public List<Mscp> search(@RequestParam String field) {
     return mscpService.search(field);
   }
+  
+  @PostMapping("/mscps/seed")
+  public List<Mscp> mscpSeed() {
+    return mscpService.mscpSeed();
+  }
+
 
 }

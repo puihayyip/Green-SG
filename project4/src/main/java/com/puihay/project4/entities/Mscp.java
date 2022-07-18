@@ -62,7 +62,7 @@ public class Mscp {
     this.block = block;
     this.street = street;
     this.postal = postal;
-    this.spostal = spostal;
+    this.spostal = postal.toString();
     this.spot1 = spot1;
     this.spot2 = spot2;
     this.spot3 = spot3;
@@ -151,18 +151,18 @@ public class Mscp {
     this.longtitude = longtitude;
   }
 
-  public String toString() {
-    return "Mscp [block=" + block + ", id=" + id + ", latitude=" + latitude + ", longtitude=" + longtitude + ", postal="
-        + postal + ", spot1=" + spot1 + ", spot2=" + spot2 + ", spot3=" + spot3 + ", spot4=" + spot4 + ", street="
-        + street + "]";
-  }
-
   public String getSpostal() {
     return spostal;
   }
 
   public void setSpostal(String spostal) {
     this.spostal = spostal;
+  }
+
+  public String toString() {
+    return "Mscp [block=" + block + ", id=" + id + ", latitude=" + latitude + ", longtitude=" + longtitude + ", postal="
+        + postal + ", spot1=" + spot1 + ", spot2=" + spot2 + ", spot3=" + spot3 + ", spot4=" + spot4 + ", street="
+        + street + "]";
   }
 
 }
