@@ -89,7 +89,7 @@ const RegisterForm = ({ setUser }: AppProps) => {
           }, 400);
 
           axios
-            .post("http://localhost:8080/api/users", {
+            .post("https://green-sg.herokuapp.com/api/users", {
               email: values.email,
               firstName: values.firstName,
               lastName: values.lastName,
