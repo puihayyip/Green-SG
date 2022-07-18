@@ -129,7 +129,7 @@ const EditProfile: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
                     e.preventDefault();
                     axios
                       .put<any>(
-                        "https://green-sg.herokuapp.com/api/users/change/",
+                        "http://localhost:8080/api/users/change/",
                         {
                           id: user.id,
                           password: e.target[1].value,
@@ -187,7 +187,7 @@ const EditProfile: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
                   onSubmit={(e: any) => {
                     e.preventDefault();
                     axios.put<any>(
-                      "https://green-sg.herokuapp.com/api/users/change/",
+                      "http://localhost:8080/api/users/change/",
                       {
                         id: user.id,
                         password: e.target[1].value,
@@ -243,7 +243,7 @@ const EditProfile: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
                     e.preventDefault();
                     axios
                       .put<any>(
-                        "https://green-sg.herokuapp.com/api/users/change-name/",
+                        "http://localhost:8080/api/users/change-name/",
                         {
                           id: user.id,
                           password: e.target[2].value,
@@ -311,7 +311,7 @@ const EditProfile: React.FC<MenuProps> = ({ openMenu, setOpenMenu }) => {
                     e.preventDefault();
                     axios
                       .put<any>(
-                        "https://green-sg.herokuapp.com/api/users/change/",
+                        "http://localhost:8080/api/users/change/",
                         {
                           id: user.id,
                           password: e.target[0].value,

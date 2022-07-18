@@ -22,7 +22,7 @@ function Map({ selection, reload, setReload }: AppProps) {
 
   useEffect(() => {
     axios
-      .get<Array<IMscp>>("https://green-sg.herokuapp.com/api/mscps")
+      .get<Array<IMscp>>("http://localhost:8080/api/mscps")
       .then((res: any) => {
         setMarker(res.data);
       });
