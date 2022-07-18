@@ -38,7 +38,7 @@ export default function LoginForm({ open, setOpen, setUser }: AppProps) {
   const handleLogin = (e: any) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/api/users/login", {
+      .post("https://green-sg.herokuapp.com/api/users/login", {
         password: e.target[1].value,
         username: e.target[0].value,
         email: e.target[0].value,

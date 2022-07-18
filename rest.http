@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:8080/api
+@baseUrl = https://green-sg.herokuapp.com/api
 
 //Get all users
 GET {{baseUrl}}/getusers

@@ -24,7 +24,7 @@ function MapPopup(props: any) {
     for (let each of arr) {
       if (each !== null) {
         axios
-          .get("http://localhost:8080/api/car", {
+          .get("https://green-sg.herokuapp.com/api/car", {
             params: {
               carplate: each,
             },
@@ -32,7 +32,7 @@ function MapPopup(props: any) {
           .then((data) => {
             axios
               .put(
-                `http://localhost:8080/api/users/book?userId=${user.id}&carId=${data.data.id}`
+                `https://green-sg.herokuapp.com/api/users/book?userId=${user.id}&carId=${data.data.id}`
               )
               .then((data) => {
                 localStorage.setItem("User", JSON.stringify(data.data));
@@ -48,7 +48,7 @@ function MapPopup(props: any) {
     const user = JSON.parse(localStorage.getItem("User") as string);
     axios
       .put(
-        `http://localhost:8080/api/users/end?userId=${
+        `https://green-sg.herokuapp.com/api/users/end?userId=${
           user.id
         }&mscp=${eachPoint.postal.toString()}`
       )
