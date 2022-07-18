@@ -18,7 +18,8 @@ public class Project4Application {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/api/**").allowedOrigins("http://localhost:3000").allowedMethods("*").allowedHeaders("*");
+				registry.addMapping("/api/**").allowedOrigins("https://project4-beryl.vercel.app/").allowedMethods("*")
+						.allowedHeaders("*");
 			}
 		};
 	}
