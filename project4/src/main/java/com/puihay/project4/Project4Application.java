@@ -18,7 +18,7 @@ public class Project4Application {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/api/**").allowedOrigins("https://green-sg.herokuapp.com").allowedMethods("*")
+				registry.addMapping("/api/**").allowedOrigins("https://green-sg.herokuapp.com/").allowedMethods("*")
 						.allowedHeaders("*");
 			}
 		};
