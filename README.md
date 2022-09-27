@@ -9,11 +9,11 @@ This individual fullstack project is an electric car rental clone of the popular
 > - Database: **_PostgreSQL_**
 > - Styling: **_MaterialUI_**
 > - Additional libraries used:
-> - Simplier calendar functions: **_MomentJS_**
-> - Number formatting: **_NumeralJS_**
-> - Frontend form validation: **_Formik with Yup_**
-> - Map rendering: **_Leaflet (React)_**
-> - API calls: **_Axios_**
+>   - Simplier calendar functions: **_MomentJS_**
+>   - Number formatting: **_NumeralJS_**
+>   - Frontend form validation: **_Formik with Yup_**
+>   - Map rendering: **_Leaflet (React)_**
+>   - API calls: **_Axios_**
 
 Key objectives for selection of project and tech stack:
 
