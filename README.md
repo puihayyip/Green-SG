@@ -22,8 +22,6 @@ Key objectives for selection of project and tech stack:
 3. Work with relational database
 4. Experiment with using more libraries
 
----
-
 ## **Features**
 
 User Menu:
@@ -43,8 +41,6 @@ Details tab:
 - View current booking
 - View previous bookings
 - View messages from **GreenSG**
-
----
 
 ## **App Structure**
 
