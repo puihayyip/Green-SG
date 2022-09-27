@@ -4,7 +4,6 @@
 
 This individual fullstack project is an electric car rental clone of the popular **BlueSG** service in Singapore. Submitted as the capstone project for General Assembly's 12 weeks software engineering bootcamp. This project is built using the following stack.
 
-```
 - Frontend: **_Typescript with React_**
 - Backend: **_Java with Springboot_**
 - Database: **_PostgreSQL_**
@@ -15,7 +14,6 @@ This individual fullstack project is an electric car rental clone of the popular
   - Frontend form validation: **_Formik with Yup_**
   - Map rendering: **_Leaflet (React)_**
   - API calls: **_Axios_**
-```
 
 Key objectives for selection of project and tech stack:
 
