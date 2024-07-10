@@ -1,0 +1,3 @@
+spring.datasource.url: jdbc:postgresql://localhost:5432/project4
+server.port: 5000
+clientURL: https://project4-beryl.vercel.app/

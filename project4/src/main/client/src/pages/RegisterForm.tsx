@@ -89,7 +89,7 @@ const RegisterForm = ({ setUser }: AppProps) => {
           }, 400);
 
           axios
-            .post("https://green-sg.herokuapp.com/api/users", {
+            .post(`${process.env.REACT_APP_BACKEND_URL}/users`, {
               email: values.email,
               firstName: values.firstName,
               lastName: values.lastName,
