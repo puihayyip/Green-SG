@@ -1,0 +1,2 @@
+spring.datasource.url: jdbc:postgresql://localhost:5432/project4
+clientURL: http://localhost:3000/

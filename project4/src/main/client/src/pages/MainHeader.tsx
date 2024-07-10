@@ -52,7 +52,7 @@ export default function Head({
   useEffect(() => {
     axios
       .get<Array<IMscp>>(
-        `https://green-sg.herokuapp.com/api/mscp/search?field=${field}`
+        `${process.env.REACT_APP_BACKEND_URL}/mscp/search?field=${field}`
       )
       .then((res: any) => {
         setData(res.data);
