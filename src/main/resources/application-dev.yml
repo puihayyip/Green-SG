@@ -4,4 +4,3 @@ spring:
     username: Yip Pui Hay
     password: dd779eeef1a64351948c9b682368155d
 clientURL: http://localhost:3000/
-server.port: 5000

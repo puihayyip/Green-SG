@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>GreenSG</name>
 	<description>Demo project for Spring Boot</description>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<!-- <properties>
 		<java.version>18.0.1.1</java.version>
 	</properties> -->

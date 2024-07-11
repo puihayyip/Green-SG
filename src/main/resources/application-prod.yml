@@ -1,5 +1,4 @@
-spring.datasource.url: jdbc:postgresql://${RDS_DB_NAME}:${RDS_PORT}/${RDS_DB_NAME}
-spring.datasource.username: ${RDS_USERNAME}
-spring.datasource.password: ${RDS_PASSWORD}
-server.port: 5000
-clientURL: https://project4-beryl.vercel.app/
+spring.datasource.url: jdbc:postgresql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}
+spring.datasource.username: ${PROD_DB_USERNAME}
+spring.datasource.password: ${PROD_DB_PASSWORD}
+clientURL: ${CLIENT_URL}
