@@ -1,1 +1,0 @@
-web: java -jar target/green-sg-1.0.jar
